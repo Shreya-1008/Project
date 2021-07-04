@@ -32,9 +32,21 @@
       text-align: center;
       margin-bottom: 5px;
     }
+   
+        a:link , a:hover , a:active ,a:visited{
+				text-decoration: none;
+				color: rgb(7, 34, 73);
+				margin-top: 2px;;
+				
+                font-size: 20px;
+		}
+a:hover{
+color:red;
+}
   </style>
 </head>
 <h1>Student Details:</h1>
+<a href="index.html">Home Page</a>
 <%
 if(students!=null) { %>
   <table>
@@ -54,7 +66,6 @@ if(students!=null) { %>
       <td ><%= item.studentphone %></td>
       <td ><%= item.studentdob %></td>
       <td ><%= item.studentemail%></td>
-     
   </tr>
   <% }) %>
   </table>

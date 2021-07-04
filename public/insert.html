@@ -98,7 +98,7 @@ handleSubmit(e){
 	     console.log("Data has been submitted");
 		 console.log(response.data.mydata.usn+":"+response.data.mydata.studentname+":"+response.data.mydata.studentdob+":"+response.data.mydata.studentsem+":"+response.data.mydata.studentphone+":"+response.data.mydata.studentemail+":"+response.data.mydata.serverMessage);
 		 alert("Student Inserted.  "+response.data.mydata.usn+":"+response.data.mydata.studentname+":"+response.data.mydata.studentdob+":"+response.data.mydata.studentsem+":"+response.data.mydata.studentphone+response.data.mydata.studentemail);
-		const myresponsedata = JSON.stringify(response.data.mydata)
+		//const myresponsedata = JSON.stringify(response.data.mydata)
 		this.setState({studentdata:myresponsedata})
         this.resetForm()
       }else if(response.data.status === 'fail'){
