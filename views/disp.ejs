@@ -1,0 +1,63 @@
+<head>
+  <style>
+    table{
+      border : groove 1px;
+      border-collapse: collapse;
+    }
+    th {
+      text-align: center;
+      width:16.66%;
+       border : groove 1px;
+       height: 40px;
+       font-size: 20px;
+       color: white;
+       background-color: black;
+    }
+    td{
+      width:16.66%;
+       text-align:center;
+       border:groove 1px;
+       border-collapse: collapse;
+       color:black;
+    }
+    tr:nth-child(odd){
+      background-color:#ccc;
+     height :30px;
+    }
+    tr:nth-child(even){
+      background-color:white;
+      height :30px;
+    }
+    h1{
+      text-align: center;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<h1>Student Details:</h1>
+<%
+if(students!=null) { %>
+  <table>
+  <tr>
+      <th>Name</th>
+      <th >USN </th>
+      <th >Semester</th>
+      <th>Phone No. </th>
+      <th>DOB </th>
+      <th>EmailId </th>
+      </tr>
+      <% students.forEach(function(item){ %>
+        <tr>
+            <td ><%= item.studentname%></td>
+            <td ><%= item.usn %></td>
+            <td ><%= item.studentsem%></td>
+      <td ><%= item.studentphone %></td>
+      <td ><%= item.studentdob %></td>
+      <td ><%= item.studentemail%></td>
+     
+  </tr>
+  <% }) %>
+  </table>
+  <% } %>
+
+

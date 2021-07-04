@@ -1,0 +1,95 @@
+<html>  
+    <head>
+    <style>
+        body{
+    background-color: rgb(201, 200, 200);
+    ruby-position: center;
+}
+.form-group{
+    padding-top: 5px;
+    border-style: hidden;
+    border-color: black;
+    align-self: right;
+    text-emphasis-style: dot;
+    font-size: 20px;
+    margin-left: 425px;
+}
+.App{
+    padding-top: 0px;
+    margin-top:5px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+h1{
+    font-size: 40px;
+    text-align: center;
+   padding: 20px ;
+    margin-top:0px;
+    float: center;
+    color: white;
+    background-color: black;
+}
+.txt{
+    width : 300px;
+    height:25px;
+    background-color: rgb(219, 216, 216);
+}
+a:link , a:hover , a:active ,a:visited{
+    text-decoration: none;
+    color: rgb(7, 34, 73);
+    margin-top: 5px;;
+    margin-left: 540px;
+}
+a:hover{
+color:red;
+}
+fieldset{
+    width: 30px;
+  border: 2px solid;
+  border-radius: 15px;
+  padding: 10px;
+}
+.sub{
+    font:10px;
+    font-weight: 200;
+    background-color:rgb(161, 161, 161) ;
+    width :90px;
+    height:30px;
+    margin-left: 105px;
+}
+    </style>
+    </head>
+<body>  
+    <div class="App">
+    <div class="Intro">
+    <h1> Update Student Details </h1>
+    </div>
+
+    <div class="form-group">
+    <fieldset>
+    <legend>Student Details :</legend>
+    <form action="update" method="get">  
+    <label>USN :</label>   <br>
+    <input type = "text" class="txt" name ="usn"> <br>
+    <label>Name : </label><br>
+    <input type="text" class="txt" name="studentname">   <br>
+    <label>DOB : </label><br>
+    <input type="date" class="txt" name="studentdob">   <br>
+    <label>Phone No. : </label><br>
+    <input type="text" class="txt" name="studentphone">   <br>
+    <label>Semester : </label><br>
+    <input type="text" class="txt" name="studentsem">  <br>
+    <label >EmailId :</label>
+    <input type="email" class="txt" name="studentemail">  <br>
+    <br>
+    <input type="submit" class="sub" value="Submit" > 
+    </form>  
+    </fieldset>
+</div>
+
+<a href="/index.html" id="link">Home Page</a>
+</div>
+</body>  
+
+</html>

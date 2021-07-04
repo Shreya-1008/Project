@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert</title>
+    <script src="react/react.development.js"></script>
+    <script src="react/react-dom.development.js"></script>
+    <script src="react/prop-types.js"></script>
+	<script src="react/axios.min.js"></script>
+    <script src="react/babel.min.js"></script>
+	<style>
+		.form-control{
+			width : 300px;
+			height:25px;
+    background-color: rgb(219, 216, 216);
+		}
+		.form-control2{
+			width:100px;
+			height:25px;
+			background-color: rgb(219, 216, 216);
+		}
+		a:link , a:hover , a:active ,a:visited{
+				text-decoration: none;
+				color: rgb(7, 34, 73);
+				margin-top: 2px;;
+				margin-left: 530px;
+		}
+a:hover{
+color:red;
+}
+fieldset{
+	margin-left: 400px;
+    width: 30px;
+  border: 2px solid;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+h1{
+	font-size: 35px;
+	margin-top: 0px;
+	padding:10px 400px;
+	color:white;
+	background-color: black;
+}
+body{
+	background-color: rgb(201, 200, 200);
+}
+button{
+	font:10px;
+    font-weight: 200;
+    background-color:rgb(161, 161, 161) ;
+    width :90px;
+    height:30px;
+	margin-top: 0px;
+    margin-left: 105px;
+}
+
+	</style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+class App extends React.Component{
+  
+  constructor(props) {
+	super(props);
+	this.state = {
+	usn:'',
+  	studentname: '',
+	  studentdob:'',
+	  studentphone:'',
+	  studentsem:'',
+	studentdata:[]
+	}
+  };
+  
+handleSubmit(e){
+    e.preventDefault();
+	const mydata1=
+	{
+	  usn: this.state.usn,
+	  studentname:this.state.studentname,
+	  studentdob:this.state.studentdob,
+	  studentsem:this.state.studentsem,
+	  studentphone:this.state.studentphone,
+	  studentemail:this.state.studentemail
+	};
+    axios({
+      method: "POST", 
+      url:"http://localhost:8888/api/savedata", 
+      data:  mydata1,
+	 
+    }).then((response)=>{
+		console.log("Data has been sent to server");
+      if (response.data.status === 'success'){
+	     console.log("Data has been submitted");
+		 console.log(response.data.mydata.usn+":"+response.data.mydata.studentname+":"+response.data.mydata.studentdob+":"+response.data.mydata.studentsem+":"+response.data.mydata.studentphone+":"+response.data.mydata.studentemail+":"+response.data.mydata.serverMessage);
+		 alert("Student Inserted.  "+response.data.mydata.usn+":"+response.data.mydata.studentname+":"+response.data.mydata.studentdob+":"+response.data.mydata.studentsem+":"+response.data.mydata.studentphone+response.data.mydata.studentemail);
+		const myresponsedata = JSON.stringify(response.data.mydata)
+		this.setState({studentdata:myresponsedata})
+        this.resetForm()
+      }else if(response.data.status === 'fail'){
+        alert("Duplicate Student ID")
+		this.resetForm()
+      }
+	  
+    })
+	.catch((e) => {
+	console.log("Internal Server error"+e);
+	});;
+	
+  };
+
+  resetForm(){
+     this.setState({usn: '',  studentname: '' , studentdob:'', studentsem:'', studentphone:'' , studentemail:''})
+  };
+
+    
+  render() {
+     console.log("State:",this.state)
+	return(
+	<body>	
+  	<div className="App">
+		<h1>Insert Student Details</h1>
+  	<form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
+		<fieldset>
+			<legend>Student details:</legend>
+  	<div className="form-group">
+      	<label htmlFor="usn">USN :</label><br/>
+      	<input type="text" className="form-control" id="usn" name="usn" value={this.state.usn} onChange={(evt) => this.handleStudentUSNChange(evt)} />
+  	</div>
+  	<br/>
+  	<div className="form-group">
+      	<label htmlFor="studentname">Student Name :</label><br/>
+      	<input type="text" className="form-control"  id="studentname" name="studentname" value={this.state.studentname} onChange={(evt) => this.handleStudentNameChange(evt)} />
+  	</div>
+	  <br/>
+	  <div className="form-group">
+      	<label htmlFor="studentdob">Date Of Birth:</label><br/>
+      	<input type="date" className="form-control"  id="studentdob" name="studentdob"  value={this.state.studentdob} onChange={(evt) => this.handleStudentDOBChange(evt)}/>
+  	</div>
+		<br/>
+		<div className="form-group">
+      	<label htmlFor="studentphone">Phone Number:</label><br/>
+      	<input type="text" className="form-control"  id="studentphone" name="studentphone" value={this.state.studentphone} onChange={(evt) => this.handleStudentPhoneChange(evt)} />
+		</div> <br/>
+	  <div className ="form-group">
+	<label htmlFor="studentemail">EmailId : </label><br/>
+	<input type="email" className="form-control"  id="studentemail" name="studentemail" value={this.state.studentemail} onChange={(evt) => this.handleStudentEmailChange(evt)} />
+  	</div> <br/>
+	  <div className="form-group">
+		<label>Sem : </label><br/>
+		<select className="form-control2" id ="studentsem"  name="studentsem" size="1" value={this.state.value} onChange={(evt)=>this.handleStudentSemChange(evt)}>
+            <option value="1">1st sem</option>
+            <option value="2">2nd Sem</option>
+            <option value="3">3rd Sem</option>
+            <option value="4">4th sem</option>
+			<option value="5">5th sem</option>
+			<option value="6">6th sem</option>
+			<option value="7">7th sem</option>
+			<option value="8">8th sem</option>
+          </select>
+		</div>
+	<br/>	
+	<br/>
+  	<div>
+	<button type="submit" className="btn btn-primary">Submit</button>
+	</div>
+	</fieldset>
+  	</form>
+	
+	<h3>{this.state.studentdata}</h3>
+	<a href="index.html">Home Page</a>
+  	</div>
+	  </body>
+	);
+	
+  }
+// Getting access to entered values
+handleStudentUSNChange =(evt)=>
+   {
+       this.setState({ usn: evt.target.value });  
+   }
+   handleStudentEmailChange =(evt)=>
+   {
+       this.setState({ studentemail: evt.target.value });  
+   }
+
+handleStudentNameChange =(evt)=>
+   {
+       this.setState({ studentname: evt.target.value });  
+   }
+  
+
+handleStudentDOBChange =(evt)=>
+   {
+       this.setState({ studentdob: evt.target.value });  
+   }
+
+
+handleStudentPhoneChange =(evt)=>
+   {
+       this.setState({ studentphone: evt.target.value });  
+   }
+handleStudentSemChange=(evt)=>
+   {
+	   this.setState({studentsem :evt.target.value})
+   }
+}
+ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+    
+  </body>
+</html>
